@@ -1,0 +1,28 @@
+
+
+    now = dt.datetime.now() + dt.timedelta(hours=5)
+    date_hour = now.strftime('%Y_%m_%d_%H_')
+    if int(now.strftime('%M')) > 31:
+        minute = "31"
+    else:
+        minute = "01"
+    date_hr_min = date_hour + minute + "_00"
+
+
+Doom is intended to work by checking various indicators both nationally and locally
+which may indicate an emergency situation.
+
+Indicators:
+
+Power grid - number of power outages in sample states from each grid.
+
+Network - How many nodes are accessible in each state. IP's in each state
+will be discovered and recorded for future runs.
+
+GPS - Number of GPS/GLONASS/GALILEO/BBEIDOU satellites in range.
+
+TODO:
+Check Cell tower status.
+Download NOAA satellite images.
+Monitor status of local FM/AM radio stations.
+Volcanoes?
