@@ -230,7 +230,7 @@ def build_ip_list(length=5):
 
 
 def ping_ip_list(iplist: dict = None):
-
+    func = {}
     if iplist is None:
         iplist = load_ips('check_ip_list.json')
     for state in enumerate(iplist):
