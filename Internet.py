@@ -200,7 +200,7 @@ def build_ip_list(length=5):
     """
     This will build the limited IP list to ping to determine internet status. A small number of
     nodes from each state will be used as a representative sample.
-    TODO: Rewrite method using asyncronous pings to speed things up.
+    TODO: Rewrite method using asynchronous pings to speed things up.
     TODO: Delete 'bad' ip from list and save. **IMPORTANT TO SAVE NEW LIST OF GOOD IPS
     :return: A list of [length] IP addresses nested in a dictionary which contains each state.
     """
@@ -239,4 +239,7 @@ def ping_ip_list(iplist: dict = None):
 
 
 if __name__ == "__main__":
-    ping_ip_list()
+    ip = '8.8.8.8'  # Test ip to ping.
+    payload = 'https://github.com/BrendanClements/Doom/blob/master/Internet.py'
+    payload_bytes = payload.encode()  # Convert string to bytes
+    icmp.ping(ip, count=1, payload=payload_bytes)  # Send it!
