@@ -13,13 +13,19 @@ def parse_cme(json):
     Returns messages for any CME alerts of the highest severity. This is incredibly rare,
     but potentially disastrous (ie Carrington event). It's also just a matter of time. One
     year? Five? 100?
+    TODO: check for date of impact.
     """
     func = []
     print('Parsing CME data.')
-    for item in json:
-        # print(item)
-        if 'G5' in item['message'] or 'S5' in item['message'] or 'R5' in item['message']:
-            func.append(item['message'])
+    i = 0
+    for item in enumerate(json):
+        try:
+            if 'G5' in item[1]['message'] or 'S5' in item[1]['message'] or 'R5' in item[1]['message']:
+                func.append(item[1]['message'])
+        except TypeError:
+            #  Schrödinger's error. It both exists and doesn't exist simultaneously. If the error is handled, or the
+            #  IDE is debugging the error is never triggered. Otherwise, the error comes up and stops the program. Why?
+            print(f'TypeError on loop {item[0]}.')  # This line will never execute.
     if not func:
         print('No high severity CME\'s detected.')
     return func
@@ -32,4 +38,6 @@ def cme():
 
 
 if __name__ == "__main__":
-    cme()
+    test = cme()
+    for item in test:
+        print(item)
